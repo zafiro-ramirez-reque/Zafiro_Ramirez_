@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentación Profesional - Zafi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+    header {
+      background: #4e73df;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid white;
+      margin-bottom: 1rem;
+    }
+    section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #4e73df;
+      margin-top: 0;
+    }
+    .social-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #4e73df;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eee;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="tu-foto.jpg" alt="Foto de Zafi">
+    <h1>Hola, soy Zafi ✨</h1>
+    <p>Estudiante de programación | Emprendedora | Apasionada por el desarrollo web</p>
+  </header>
+
+  <section>
+    <h2>Sobre mí</h2>
+    <p>
+      Soy una persona creativa y dedicada, con interés en el desarrollo web, las finanzas y la gestión de proyectos. 
+      Actualmente estoy aprendiendo programación en Python y trabajando en proyectos familiares.
+    </p>
+  </section>
+
+  <section>
+    <h2>Experiencia</h2>
+    <ul>
+      <li>Encargada de Finanzas - 21Estilos Producciones</li>
+      <li>Diseño y gestión de proyectos de ropa propia</li>
+      <li>Proyectos de desarrollo web personales</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Educación</h2>
+    <ul>
+      <li>Estudiante de Inglés en el Británico</li>
+      <li>Cursos de Programación en Python</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Contacto</h2>
+    <p>📧 zafi@email.com</p>
+    <div class="social-links">
+      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="https://github.com">GitHub</a>
+      <a href="https://instagram.com">Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Zafi - Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
