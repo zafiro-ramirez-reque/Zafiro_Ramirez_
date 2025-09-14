@@ -37,6 +37,7 @@
       text-align: center;
       font-size: 16px;
       position: relative;
+      border-left: 5px solid #ff9800;
     }
     
     .github-notice .close {
@@ -45,6 +46,45 @@
       top: 15px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 20px;
+    }
+    
+    .github-check {
+      background: #e9f7ef;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border-left: 5px solid #28a745;
+    }
+    
+    .github-check h3 {
+      color: #28a745;
+      margin-top: 0;
+    }
+    
+    .github-check ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    
+    .github-check li {
+      margin-bottom: 8px;
+    }
+    
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .status-ok {
+      background: #28a745;
+    }
+    
+    .status-error {
+      background: #dc3545;
     }
     
     header {
@@ -332,6 +372,13 @@
       margin-bottom: 10px;
     }
     
+    .github-steps code {
+      background: #e9ecef;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+    
     @media screen and (max-width: 768px) {
       .timeline::after {
         left: 31px;
@@ -358,7 +405,7 @@
 
   <div class="github-notice" id="githubNotice">
     <span class="close" onclick="closeNotice()">&times;</span>
-    <strong>¿Publicando en GitHub Pages?</strong> Asegúrate de que tu archivo se llame <strong>index.html</strong> y esté en la raíz del repositorio.
+    <strong><i class="fas fa-exclamation-triangle"></i> ¿Publicando en GitHub Pages?</strong> Sigue las instrucciones a continuación para resolver el error 404.
   </div>
 
   <header>
@@ -374,6 +421,32 @@
       <i class="fas fa-chevron-down"></i>
     </div>
   </header>
+
+  <section id="github-help">
+    <h2><i class="fas fa-question-circle"></i> Solución de problemas con GitHub Pages</h2>
+    <div class="github-check">
+      <h3><i class="fas fa-check-circle"></i> Comprobaciones necesarias:</h3>
+      <ul>
+        <li><span class="status-indicator" id="checkIndex"></span> El archivo debe llamarse <strong>index.html</strong></li>
+        <li><span class="status-indicator" id="checkLocation"></span> El archivo debe estar en la raíz del repositorio</li>
+        <li><span class="status-indicator" id="checkBranch"></span> GitHub Pages debe estar configurado con la rama correcta</li>
+        <li><span class="status-indicator" id="checkSettings"></span> La configuración debe estar activada en los ajustes del repositorio</li>
+      </ul>
+    </div>
+    <div class="github-steps">
+      <h3><i class="fas fa-list-ol"></i> Pasos para solucionar el error 404:</h3>
+      <ol>
+        <li>Asegúrate de que tu archivo se llama <strong>index.html</strong> (exactamente así, en minúsculas)</li>
+        <li>El archivo debe estar en la raíz del repositorio, no dentro de ninguna carpeta</li>
+        <li>Ve a la configuración de tu repositorio en GitHub</li>
+        <li>Haz clic en "Pages" en el menú lateral</li>
+        <li>Selecciona la rama principal (generalmente <code>main</code> o <code>master</code>) como fuente</li>
+        <li>Guarda los cambios y espera unos minutos (puede tardar hasta 10 minutos)</li>
+        <li>Tu sitio estará disponible en: <code>https://tuusuario.github.io/nombre-repositorio/</code></li>
+      </ol>
+      <p>Si aún tienes problemas, puedes <a href="https://docs.github.com/es/pages" target="_blank">consultar la documentación oficial de GitHub Pages</a>.</p>
+    </div>
+  </section>
 
   <section id="about">
     <h2>Sobre mí</h2>
@@ -488,6 +561,23 @@
   </footer>
 
   <script>
+    // Comprobaciones automáticas
+    document.addEventListener('DOMContentLoaded', function() {
+      // Comprobar si estamos en GitHub Pages
+      if (window.location.hostname.includes('github.io')) {
+        document.getElementById('checkIndex').classList.add('status-ok');
+        document.getElementById('checkLocation').classList.add('status-ok');
+        document.getElementById('checkBranch').classList.add('status-ok');
+        document.getElementById('checkSettings').classList.add('status-ok');
+        document.querySelector('.github-notice').style.display = 'none';
+      } else {
+        document.getElementById('checkIndex').classList.add('status-error');
+        document.getElementById('checkLocation').classList.add('status-error');
+        document.getElementById('checkBranch').classList.add('status-error');
+        document.getElementById('checkSettings').classList.add('status-error');
+      }
+    });
+    
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
