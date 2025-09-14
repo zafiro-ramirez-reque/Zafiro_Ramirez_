@@ -30,6 +30,23 @@
       line-height: 1.6;
     }
     
+    .github-notice {
+      background: #ffc107;
+      color: #333;
+      padding: 15px;
+      text-align: center;
+      font-size: 16px;
+      position: relative;
+    }
+    
+    .github-notice .close {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
@@ -295,6 +312,26 @@
       color: var(--light-text);
     }
     
+    .github-steps {
+      background-color: #f8f9fc;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    
+    .github-steps h3 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+    
+    .github-steps ol {
+      padding-left: 20px;
+    }
+    
+    .github-steps li {
+      margin-bottom: 10px;
+    }
+    
     @media screen and (max-width: 768px) {
       .timeline::after {
         left: 31px;
@@ -318,6 +355,11 @@
   </style>
 </head>
 <body>
+
+  <div class="github-notice" id="githubNotice">
+    <span class="close" onclick="closeNotice()">&times;</span>
+    <strong>¿Publicando en GitHub Pages?</strong> Asegúrate de que tu archivo se llame <strong>index.html</strong> y esté en la raíz del repositorio.
+  </div>
 
   <header>
     <div class="profile-container">
@@ -440,8 +482,26 @@
     </div>
   </section>
 
+  <section id="github-help">
+    <h2>¿Problemas con GitHub Pages?</h2>
+    <div class="github-steps">
+      <h3>Sigue estos pasos para solucionar el error 404:</h3>
+      <ol>
+        <li>Asegúrate de que tu archivo se llama <strong>index.html</strong> (exactamente así, en minúsculas)</li>
+        <li>El archivo debe estar en la rama principal de tu repositorio (generalmente <strong>main</strong> o <strong>master</strong>)</li>
+        <li>Ve a la configuración de tu repositorio en GitHub</li>
+        <li>Haz clic en "Pages" en el menú lateral</li>
+        <li>Selecciona la rama principal como fuente</li>
+        <li>Guarda los cambios y espera unos minutos</li>
+        <li>Tu sitio estará disponible en: https://tuusuario.github.io/nombre-repositorio/</li>
+      </ol>
+      <p>Si aún tienes problemas, puedes <a href="https://docs.github.com/es/pages" target="_blank">consultar la documentación oficial de GitHub Pages</a>.</p>
+    </div>
+  </section>
+
   <footer>
     <p>© 2025 Zafiro Diokiar Elly Ramirez Reque - Todos los derechos reservados</p>
+    <p>Desplegado con GitHub Pages</p>
   </footer>
 
   <script>
@@ -461,6 +521,11 @@
       alert('¡Gracias por tu mensaje! Te responderé pronto.');
       this.reset();
     });
+    
+    // Close GitHub notice
+    function closeNotice() {
+      document.getElementById('githubNotice').style.display = 'none';
+    }
     
     // Animation on scroll
     const observerOptions = {
