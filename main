@@ -482,23 +482,6 @@
     </div>
   </section>
 
-  <section id="github-help">
-    <h2>¿Problemas con GitHub Pages?</h2>
-    <div class="github-steps">
-      <h3>Sigue estos pasos para solucionar el error 404:</h3>
-      <ol>
-        <li>Asegúrate de que tu archivo se llama <strong>index.html</strong> (exactamente así, en minúsculas)</li>
-        <li>El archivo debe estar en la rama principal de tu repositorio (generalmente <strong>main</strong> o <strong>master</strong>)</li>
-        <li>Ve a la configuración de tu repositorio en GitHub</li>
-        <li>Haz clic en "Pages" en el menú lateral</li>
-        <li>Selecciona la rama principal como fuente</li>
-        <li>Guarda los cambios y espera unos minutos</li>
-        <li>Tu sitio estará disponible en: https://tuusuario.github.io/nombre-repositorio/</li>
-      </ol>
-      <p>Si aún tienes problemas, puedes <a href="https://docs.github.com/es/pages" target="_blank">consultar la documentación oficial de GitHub Pages</a>.</p>
-    </div>
-  </section>
-
   <footer>
     <p>© 2025 Zafiro Diokiar Elly Ramirez Reque - Todos los derechos reservados</p>
     <p>Desplegado con GitHub Pages</p>
