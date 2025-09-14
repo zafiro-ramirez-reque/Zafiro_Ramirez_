@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presentación Profesional - Zafiro Diokiar Elly Ramirez Reque</title>
+  <title>Zafiro Ramirez - Portfolio Profesional</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -13,6 +13,16 @@
       --text-color: #333;
       --light-text: #858796;
       --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+
+    .dark-mode {
+      --primary-color: #6d8eff;
+      --secondary-color: #9370db;
+      --accent-color: #2d2d3d;
+      --text-color: #f1f1f1;
+      --light-text: #a0a0b0;
+      --shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
     
     * {
@@ -25,73 +35,116 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f8f9fc;
+      background: var(--accent-color);
       color: var(--text-color);
       line-height: 1.6;
+      transition: var(--transition);
+      padding-top: 70px; /* Para la navbar fija */
     }
     
-    .github-notice {
-      background: #ffc107;
-      color: #333;
-      padding: 15px;
-      text-align: center;
-      font-size: 16px;
-      position: relative;
-      border-left: 5px solid #ff9800;
+    /* Barra de navegación */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .dark-mode .navbar {
+      background: rgba(30, 30, 40, 0.95);
     }
     
-    .github-notice .close {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      cursor: pointer;
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    
+    .nav-logo a {
+      font-size: 1.5rem;
       font-weight: bold;
-      font-size: 20px;
+      color: var(--primary-color);
+      text-decoration: none;
     }
     
-    .github-check {
-      background: #e9f7ef;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px 0;
-      border-left: 5px solid #28a745;
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
     }
     
-    .github-check h3 {
-      color: #28a745;
-      margin-top: 0;
+    .nav-link {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
     }
     
-    .github-check ul {
-      margin: 10px 0;
-      padding-left: 20px;
+    .nav-link:hover {
+      color: var(--primary-color);
     }
     
-    .github-check li {
-      margin-bottom: 8px;
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary-color);
+      transition: var(--transition);
     }
     
-    .status-indicator {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text-color);
+      margin: 3px 0;
+      transition: var(--transition);
+    }
+    
+    /* Toggle modo oscuro */
+    .theme-toggle {
+      background: var(--primary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      margin-right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
     }
     
-    .status-ok {
-      background: #28a745;
+    .theme-toggle:hover {
+      transform: scale(1.1);
     }
     
-    .status-error {
-      background: #dc3545;
-    }
-    
+    /* Header */
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
       text-align: center;
-      padding: 3rem 1rem;
+      padding: 5rem 1rem 3rem;
       position: relative;
     }
     
@@ -108,6 +161,11 @@
       border: 4px solid white;
       box-shadow: var(--shadow);
       object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    header img:hover {
+      transform: scale(1.05);
     }
     
     .profile-overlay {
@@ -128,12 +186,14 @@
     h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
+      animation: fadeIn 1s ease;
     }
     
     .tagline {
       font-size: 1.2rem;
       max-width: 600px;
       margin: 0 auto;
+      animation: fadeIn 1.5s ease;
     }
     
     .scroll-indicator {
@@ -143,6 +203,7 @@
       transform: translateX(-50%);
       font-size: 2rem;
       animation: bounce 2s infinite;
+      cursor: pointer;
     }
     
     @keyframes bounce {
@@ -151,6 +212,12 @@
       60% {transform: translateY(-10px) translateX(-50%);}
     }
     
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Secciones */
     section {
       max-width: 1000px;
       margin: 2rem auto;
@@ -158,6 +225,18 @@
       background: white;
       border-radius: 12px;
       box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .dark-mode section {
+      background: #1e1e2e;
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     h2 {
@@ -168,6 +247,7 @@
       display: inline-block;
     }
     
+    /* Sobre mí */
     .about-content {
       display: flex;
       flex-wrap: wrap;
@@ -178,6 +258,42 @@
     .about-text {
       flex: 1;
       min-width: 300px;
+    }
+    
+    .about-highlights {
+      margin-top: 1.5rem;
+      background: var(--accent-color);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .about-highlights h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .highlight-icon {
+      background: var(--primary-color);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
     }
     
     .skills-container {
@@ -194,8 +310,21 @@
       font-size: 0.9rem;
       color: var(--primary-color);
       border: 1px solid #e3e6f0;
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    .dark-mode .skill {
+      border-color: #444;
     }
     
+    .skill:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    /* Timeline (Experiencia y Educación) */
     .timeline {
       position: relative;
       max-width: 800px;
@@ -212,12 +341,24 @@
       left: 50%;
       margin-left: -2px;
     }
+
+    .dark-mode .timeline::after {
+      background-color: #444;
+    }
     
     .timeline-item {
       padding: 10px 40px;
       position: relative;
       width: 50%;
       box-sizing: border-box;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
     
     .timeline-item:nth-child(odd) {
@@ -234,6 +375,16 @@
       position: relative;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+
+    .dark-mode .timeline-content {
+      background: #2d2d3d;
+    }
+    
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
     
     .timeline-content::after {
@@ -245,6 +396,10 @@
       top: 15px;
       border-radius: 50%;
       z-index: 1;
+    }
+
+    .dark-mode .timeline-content::after {
+      background-color: #2d2d3d;
     }
     
     .timeline-item:nth-child(odd) .timeline-content::after {
@@ -263,6 +418,91 @@
       margin-bottom: 0.5rem;
     }
     
+    /* Proyectos */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .project-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .dark-mode .project-card {
+      background: #2d2d3d;
+    }
+    
+    .project-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+    
+    .project-info {
+      padding: 1.5rem;
+    }
+    
+    .project-info h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+    
+    .project-tags span {
+      background: var(--accent-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      color: var(--primary-color);
+    }
+    
+    .project-link {
+      display: inline-block;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .project-link:hover {
+      color: var(--secondary-color);
+    }
+    
+    /* Contacto */
     .contact-content {
       display: flex;
       flex-wrap: wrap;
@@ -272,6 +512,13 @@
     .contact-info {
       flex: 1;
       min-width: 300px;
+    }
+    
+    .contact-info p {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     
     .contact-form {
@@ -295,6 +542,20 @@
       border: 1px solid #ddd;
       border-radius: 6px;
       font-family: inherit;
+      transition: var(--transition);
+      background: var(--accent-color);
+      color: var(--text-color);
+    }
+
+    .dark-mode input, 
+    .dark-mode textarea {
+      border-color: #444;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.1);
     }
     
     textarea {
@@ -310,11 +571,12 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s;
+      transition: var(--transition);
     }
     
     button:hover {
       background: var(--secondary-color);
+      transform: translateY(-2px);
     }
     
     .social-links {
@@ -333,7 +595,7 @@
       border-radius: 50%;
       color: var(--primary-color);
       font-size: 1.5rem;
-      transition: all 0.3s;
+      transition: var(--transition);
       text-decoration: none;
     }
     
@@ -343,6 +605,7 @@
       transform: translateY(-3px);
     }
     
+    /* Footer */
     footer {
       text-align: center;
       padding: 2rem;
@@ -351,35 +614,71 @@
       border-top: 1px solid #e3e6f0;
       color: var(--light-text);
     }
-    
-    .github-steps {
-      background-color: #f8f9fc;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 20px;
+
+    .dark-mode footer {
+      background: #1e1e2e;
+      border-color: #444;
     }
     
-    .github-steps h3 {
-      color: var(--primary-color);
-      margin-bottom: 15px;
+    /* GitHub Notice */
+    .github-notice {
+      background: #ffc107;
+      color: #333;
+      padding: 15px;
+      text-align: center;
+      font-size: 16px;
+      position: relative;
+      border-left: 5px solid #ff9800;
     }
     
-    .github-steps ol {
-      padding-left: 20px;
+    .github-notice .close {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 20px;
     }
     
-    .github-steps li {
-      margin-bottom: 10px;
-    }
-    
-    .github-steps code {
-      background: #e9ecef;
-      padding: 2px 5px;
-      border-radius: 3px;
-      font-family: monospace;
-    }
-    
+    /* Responsive */
     @media screen and (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+      }
+
+      .dark-mode .nav-menu {
+        background: #1e1e2e;
+      }
+      
+      .nav-menu.active {
+        left: 0;
+      }
+      
+      .nav-toggle {
+        display: flex;
+      }
+      
+      .nav-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .nav-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      
+      .nav-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+      
       .timeline::after {
         left: 31px;
       }
@@ -398,6 +697,10 @@
         left: 15px;
         right: auto;
       }
+      
+      .contact-content {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -405,9 +708,36 @@
 
   <div class="github-notice" id="githubNotice">
     <span class="close" onclick="closeNotice()">&times;</span>
-    <strong><i class="fas fa-exclamation-triangle"></i> ¿Publicando en GitHub Pages?</strong> Sigue las instrucciones a continuación para resolver el error 404.
+    <strong><i class="fas fa-exclamation-triangle"></i> ¿Publicando en GitHub Pages?</strong> Asegúrate de que tu archivo se llame <strong>index.html</strong> y esté en la raíz del repositorio.
   </div>
 
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="#">Zafiro Ramirez</a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="#about" class="nav-link">Sobre mí</a>
+        <a href="#experience" class="nav-link">Experiencia</a>
+        <a href="#education" class="nav-link">Educación</a>
+        <a href="#projects" class="nav-link">Proyectos</a>
+        <a href="#contact" class="nav-link">Contacto</a>
+      </div>
+      <div class="nav-actions">
+        <div class="theme-toggle" id="themeToggle">
+          <i class="fas fa-moon"></i>
+        </div>
+        <div class="nav-toggle" id="navToggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Encabezado -->
   <header>
     <div class="profile-container">
       <img src="https://placehold.co/400x400/4e73df/FFFFFF?text=ZR" alt="Foto de Zafiro Diokiar Elly Ramirez Reque">
@@ -415,58 +745,79 @@
         <i class="fas fa-check"></i>
       </div>
     </div>
-    <h1>Zafiro Diokiar Elly Ramirez Reque</h1>
-    <p class="tagline">Estudiante de programación | Emprendedora | Apasionada por el desarrollo web</p>
+    <h1 id="typewriter">Zafiro Diokiar Elly Ramirez Reque</h1>
+    <p class="tagline">Estudiante de Computación Científica | Editora de Video | Desarrolladora Web</p>
     <div class="scroll-indicator">
       <i class="fas fa-chevron-down"></i>
     </div>
   </header>
 
-  <section id="github-help">
-    <h2><i class="fas fa-question-circle"></i> Solución de problemas con GitHub Pages</h2>
-    <div class="github-check">
-      <h3><i class="fas fa-check-circle"></i> Comprobaciones necesarias:</h3>
-      <ul>
-        <li><span class="status-indicator" id="checkIndex"></span> El archivo debe llamarse <strong>index.html</strong></li>
-        <li><span class="status-indicator" id="checkLocation"></span> El archivo debe estar en la raíz del repositorio</li>
-        <li><span class="status-indicator" id="checkBranch"></span> GitHub Pages debe estar configurado con la rama correcta</li>
-        <li><span class="status-indicator" id="checkSettings"></span> La configuración debe estar activada en los ajustes del repositorio</li>
-      </ul>
-    </div>
-    <div class="github-steps">
-      <h3><i class="fas fa-list-ol"></i> Pasos para solucionar el error 404:</h3>
-      <ol>
-        <li>Asegúrate de que tu archivo se llama <strong>index.html</strong> (exactamente así, en minúsculas)</li>
-        <li>El archivo debe estar en la raíz del repositorio, no dentro de ninguna carpeta</li>
-        <li>Ve a la configuración de tu repositorio en GitHub</li>
-        <li>Haz clic en "Pages" en el menú lateral</li>
-        <li>Selecciona la rama principal (generalmente <code>main</code> o <code>master</code>) como fuente</li>
-        <li>Guarda los cambios y espera unos minutos (puede tardar hasta 10 minutos)</li>
-        <li>Tu sitio estará disponible en: <code>https://tuusuario.github.io/nombre-repositorio/</code></li>
-      </ol>
-      <p>Si aún tienes problemas, puedes <a href="https://docs.github.com/es/pages" target="_blank">consultar la documentación oficial de GitHub Pages</a>.</p>
-    </div>
-  </section>
-
+  <!-- Sección Sobre mí -->
   <section id="about">
     <h2>Sobre mí</h2>
     <div class="about-content">
       <div class="about-text">
-        <p>Soy una persona creativa y dedicada, con interés en el desarrollo web, las finanzas y la gestión de proyectos. Actualmente estoy aprendiendo programación en Python y trabajando en proyectos familiares.</p>
-        <p>Mi objetivo es combinar mis habilidades técnicas con mi visión creativa para desarrollar soluciones innovadoras que tengan un impacto positivo.</p>
+        <p>✨ Hola, soy Zafiro, tengo 19 años y actualmente estudio Computación Científica en la Universidad Nacional Mayor de San Marcos (UNMSM). Soy una persona creativa, proactiva, persistente y en constante aprendizaje, apasionada por la programación y el desarrollo web.</p>
+        
+        <p>Trabajo en la edición de videos para redes sociales, colaborando con mi hermana en la gestión digital de doctores, cirujanos y dentistas. También soy parte de 21Estilos Producciones, donde no solo me encargo de la edición de reels de eventos, sino también de la gestión financiera de la empresa.</p>
+        
+        <p>Me gusta encontrar soluciones creativas y originales en todo lo que hago, ya sea en proyectos digitales, audiovisuales o académicos. Además, estoy perfeccionando mi inglés en el Británico, lo que me abre más oportunidades en un entorno profesional global.</p>
+        
+        <p>Mi objetivo es seguir creciendo como desarrolladora web, analista de datos y creadora de contenido digital, combinando mis habilidades técnicas con mi experiencia en gestión, creatividad y comunicación audiovisual.</p>
+        
+        <p>En mi tiempo libre disfruto mucho de la música y el baile, actividades que me inspiran y me ayudan a mantener el equilibrio entre la creatividad y la disciplina en mi vida profesional.</p>
+        
+        <div class="about-highlights">
+          <h3><i class="fas fa-star"></i> Destacados</h3>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <strong>Estudiante de Computación Científica</strong> en la UNMSM
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <div>
+              <strong>Editora de video</strong> para redes sociales de profesionales de la salud
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div>
+              <strong>Gestión financiera</strong> en 21Estilos Producciones
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-language"></i>
+            </div>
+            <div>
+              <strong>Estudiante de inglés</strong> en el Británico
+            </div>
+          </div>
+        </div>
         
         <div class="skills-container">
           <span class="skill">Python</span>
           <span class="skill">Desarrollo Web</span>
+          <span class="skill">Edición de Video</span>
           <span class="skill">Finanzas</span>
           <span class="skill">Gestión de Proyectos</span>
-          <span class="skill">Diseño</span>
-          <span class="skill">Emprendimiento</span>
+          <span class="skill">Análisis de Datos</span>
+          <span class="skill">Creatividad</span>
+          <span class="skill">Comunicación Audiovisual</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Sección Experiencia -->
   <section id="experience">
     <h2>Experiencia</h2>
     <div class="timeline">
@@ -481,9 +832,9 @@
       <div class="timeline-item">
         <div class="timeline-content">
           <div class="timeline-date">2022 - Presente</div>
-          <h3>Diseño y Gestión de Proyectos de Ropa</h3>
-          <p>Proyectos Propios</p>
-          <p>Diseño, producción y comercialización de líneas de ropa propia, gestionando todo el proceso desde la concepción hasta la venta.</p>
+          <h3>Editora de Video y Gestión Digital</h3>
+          <p>Freelance</p>
+          <p>Edición de videos para redes sociales y gestión digital de doctores, cirujanos y dentistas.</p>
         </div>
       </div>
       <div class="timeline-item">
@@ -497,9 +848,18 @@
     </div>
   </section>
 
+  <!-- Sección Educación -->
   <section id="education">
     <h2>Educación</h2>
     <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2023 - Presente</div>
+          <h3>Computación Científica</h3>
+          <p>Universidad Nacional Mayor de San Marcos (UNMSM)</p>
+          <p>Formación en programación, análisis de datos y métodos computacionales aplicados a la ciencia.</p>
+        </div>
+      </div>
       <div class="timeline-item">
         <div class="timeline-content">
           <div class="timeline-date">2023 - Presente</div>
@@ -519,6 +879,61 @@
     </div>
   </section>
 
+  <!-- Sección Proyectos -->
+  <section id="projects">
+    <h2>Proyectos Destacados</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://placehold.co/300x200/4e73df/FFFFFF?text=Portafolio+Web" alt="Proyecto Web">
+        </div>
+        <div class="project-info">
+          <h3>Portafolio Personal</h3>
+          <p>Desarrollo de un sitio web personal para mostrar mis habilidades y proyectos.</p>
+          <div class="project-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+          <a href="#" class="project-link">Ver más</a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://placehold.co/300x200/6f42c1/FFFFFF?text=App+Python" alt="Proyecto Python">
+        </div>
+        <div class="project-info">
+          <h3>Aplicación de Tareas</h3>
+          <p>Desarrollo de una aplicación de gestión de tareas utilizando Python.</p>
+          <div class="project-tags">
+            <span>Python</span>
+            <span>SQLite</span>
+            <span>Tkinter</span>
+          </div>
+          <a href="#" class="project-link">Ver más</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <img src="https://placehold.co/300x200/28a745/FFFFFF?text=Edición+Video" alt="Proyecto Edición Video">
+        </div>
+        <div class="project-info">
+          <h3>Reels para Profesionales</h3>
+          <p>Edición de videos promocionales para doctores y dentistas.</p>
+          <div class="project-tags">
+            <span>Premiere Pro</span>
+            <span>After Effects</span>
+            <span>Photoshop</span>
+          </div>
+          <a href="#" class="project-link">Ver más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Contacto -->
   <section id="contact">
     <h2>Contacto</h2>
     <div class="contact-content">
@@ -555,69 +970,207 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>© 2025 Zafiro Diokiar Elly Ramirez Reque - Todos los derechos reservados</p>
     <p>Desplegado con GitHub Pages</p>
   </footer>
 
   <script>
-    // Comprobaciones automáticas
+    // Esperar a que el DOM esté completamente cargado
     document.addEventListener('DOMContentLoaded', function() {
-      // Comprobar si estamos en GitHub Pages
-      if (window.location.hostname.includes('github.io')) {
-        document.getElementById('checkIndex').classList.add('status-ok');
-        document.getElementById('checkLocation').classList.add('status-ok');
-        document.getElementById('checkBranch').classList.add('status-ok');
-        document.getElementById('checkSettings').classList.add('status-ok');
-        document.querySelector('.github-notice').style.display = 'none';
-      } else {
-        document.getElementById('checkIndex').classList.add('status-error');
-        document.getElementById('checkLocation').classList.add('status-error');
-        document.getElementById('checkBranch').classList.add('status-error');
-        document.getElementById('checkSettings').classList.add('status-error');
-      }
+      // Inicializar funcionalidades
+      initNavbar();
+      initScrollEffects();
+      initThemeToggle();
+      initContactForm();
+      initTypeEffect();
     });
-    
-    // Smooth scrolling for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+
+    // Función para inicializar la barra de navegación
+    function initNavbar() {
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      
+      // Toggle del menú móvil
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('active');
+          navToggle.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+          });
+        });
+      }
+      
+      // Cambiar estilo de la navbar al hacer scroll
+      window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+          navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+          navbar.style.backdropFilter = 'blur(10px)';
+        } else {
+          navbar.style.background = 'white';
+          navbar.style.backdropFilter = 'none';
+        }
+      });
+    }
+
+    // Función para inicializar efectos de scroll
+    function initScrollEffects() {
+      // Scroll suave para enlaces internos
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = targetElement.offsetTop - navbarHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
         });
       });
-    });
-    
-    // Simple form validation
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('¡Gracias por tu mensaje! Te responderé pronto.');
-      this.reset();
-    });
-    
+      
+      // Mostrar elementos al hacer scroll (Scroll Animation)
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+      
+      // Observar secciones
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+      
+      // Observar elementos de la línea de tiempo
+      document.querySelectorAll('.timeline-item').forEach((item, index) => {
+        // Añadir delay progresivo
+        item.style.transitionDelay = `${index * 0.2}s`;
+        observer.observe(item);
+      });
+      
+      // Observar tarjetas de proyectos
+      document.querySelectorAll('.project-card').forEach((card, index) => {
+        // Añadir delay progresivo
+        card.style.transitionDelay = `${index * 0.2}s`;
+        observer.observe(card);
+      });
+      
+      // Efecto de scroll para el indicador de scroll
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+          window.scrollTo({
+            top: document.getElementById('about').offsetTop - 70,
+            behavior: 'smooth'
+          });
+        });
+      }
+    }
+
+    // Función para inicializar el toggle del modo oscuro
+    function initThemeToggle() {
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle.querySelector('i');
+      
+      // Comprobar preferencia del usuario
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const savedTheme = localStorage.getItem('theme');
+      
+      // Aplicar tema guardado o preferencia del sistema
+      if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+      
+      // Toggle del tema
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+          localStorage.setItem('theme', 'dark');
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+        } else {
+          localStorage.setItem('theme', 'light');
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+        }
+      });
+    }
+
+    // Función para inicializar el formulario de contacto
+    function initContactForm() {
+      const contactForm = document.getElementById('contactForm');
+      
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Simular envío del formulario
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+          
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+          submitBtn.disabled = true;
+          
+          // Simular retraso de red
+          setTimeout(() => {
+            alert('¡Gracias por tu mensaje! Te responderé pronto.');
+            contactForm.reset();
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }, 2000);
+        });
+      }
+    }
+
+    // Función para efecto de escritura en el título
+    function initTypeEffect() {
+      const titleElement = document.getElementById('typewriter');
+      if (!titleElement) return;
+      
+      const originalText = titleElement.textContent;
+      titleElement.textContent = '';
+      
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        if (i < originalText.length) {
+          titleElement.textContent += originalText.charAt(i);
+          i++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, 100);
+    }
+
     // Close GitHub notice
     function closeNotice() {
       document.getElementById('githubNotice').style.display = 'none';
     }
-    
-    // Animation on scroll
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
   </script>
 
 </body>
