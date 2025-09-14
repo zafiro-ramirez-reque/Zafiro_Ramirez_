@@ -3,100 +3,484 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presentación Profesional - Zafi</title>
+  <title>Presentación Profesional - Zafiro Diokiar Elly Ramirez Reque</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --primary-color: #4e73df;
+      --secondary-color: #6f42c1;
+      --accent-color: #f8f9fc;
+      --text-color: #333;
+      --light-text: #858796;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    * {
       margin: 0;
       padding: 0;
-      background: #f4f4f9;
-      color: #333;
+      box-sizing: border-box;
     }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fc;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
     header {
-      background: #4e73df;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
+      position: relative;
     }
+    
+    .profile-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    
     header img {
-      width: 120px;
-      height: 120px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
-      border: 3px solid white;
-      margin-bottom: 1rem;
+      border: 4px solid white;
+      box-shadow: var(--shadow);
+      object-fit: cover;
     }
-    section {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1.5rem;
+    
+    .profile-overlay {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+      40% {transform: translateY(-20px) translateX(-50%);}
+      60% {transform: translateY(-10px) translateX(-50%);}
+    }
+    
+    section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+    
     h2 {
-      color: #4e73df;
-      margin-top: 0;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
     }
-    .social-links a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #4e73df;
+    
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .skill {
+      background: var(--accent-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--primary-color);
+      border: 1px solid #e3e6f0;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: #e3e6f0;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+    
+    .timeline-content {
+      padding: 1.5rem;
+      background-color: white;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      right: -10px;
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -10px;
+      box-shadow: -1px 1px 0 rgba(0,0,0,0.1);
+    }
+    
+    .timeline-date {
       font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
     }
+    
+    .contact-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    
+    button:hover {
+      background: var(--secondary-color);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
     footer {
       text-align: center;
-      padding: 1rem;
-      background: #eee;
-      margin-top: 2rem;
+      padding: 2rem;
+      background: white;
+      margin-top: 3rem;
+      border-top: 1px solid #e3e6f0;
+      color: var(--light-text);
+    }
+    
+    @media screen and (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-content::after {
+        left: 15px;
+        right: auto;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="tu-foto.jpg" alt="Foto de Zafi">
-    <h1>Hola, soy Zafi ✨</h1>
-    <p>Estudiante de programación | Emprendedora | Apasionada por el desarrollo web</p>
+    <div class="profile-container">
+      <img src="https://placehold.co/400x400/4e73df/FFFFFF?text=ZR" alt="Foto de Zafiro Diokiar Elly Ramirez Reque">
+      <div class="profile-overlay">
+        <i class="fas fa-check"></i>
+      </div>
+    </div>
+    <h1>Zafiro Diokiar Elly Ramirez Reque</h1>
+    <p class="tagline">Estudiante de programación | Emprendedora | Apasionada por el desarrollo web</p>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
   </header>
 
-  <section>
+  <section id="about">
     <h2>Sobre mí</h2>
-    <p>
-      Soy una persona creativa y dedicada, con interés en el desarrollo web, las finanzas y la gestión de proyectos. 
-      Actualmente estoy aprendiendo programación en Python y trabajando en proyectos familiares.
-    </p>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Soy una persona creativa y dedicada, con interés en el desarrollo web, las finanzas y la gestión de proyectos. Actualmente estoy aprendiendo programación en Python y trabajando en proyectos familiares.</p>
+        <p>Mi objetivo es combinar mis habilidades técnicas con mi visión creativa para desarrollar soluciones innovadoras que tengan un impacto positivo.</p>
+        
+        <div class="skills-container">
+          <span class="skill">Python</span>
+          <span class="skill">Desarrollo Web</span>
+          <span class="skill">Finanzas</span>
+          <span class="skill">Gestión de Proyectos</span>
+          <span class="skill">Diseño</span>
+          <span class="skill">Emprendimiento</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
+  <section id="experience">
     <h2>Experiencia</h2>
-    <ul>
-      <li>Encargada de Finanzas - 21Estilos Producciones</li>
-      <li>Diseño y gestión de proyectos de ropa propia</li>
-      <li>Proyectos de desarrollo web personales</li>
-    </ul>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2023 - Presente</div>
+          <h3>Encargada de Finanzas</h3>
+          <p>21Estilos Producciones</p>
+          <p>Gestión de presupuestos, control de gastos y planificación financiera para proyectos de producción.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2022 - Presente</div>
+          <h3>Diseño y Gestión de Proyectos de Ropa</h3>
+          <p>Proyectos Propios</p>
+          <p>Diseño, producción y comercialización de líneas de ropa propia, gestionando todo el proceso desde la concepción hasta la venta.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2023 - Presente</div>
+          <h3>Desarrollo Web</h3>
+          <p>Proyectos Personales</p>
+          <p>Desarrollo de sitios web y aplicaciones web como proyectos de aprendizaje y emprendimiento.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
+  <section id="education">
     <h2>Educación</h2>
-    <ul>
-      <li>Estudiante de Inglés en el Británico</li>
-      <li>Cursos de Programación en Python</li>
-    </ul>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2023 - Presente</div>
+          <h3>Estudiante de Inglés</h3>
+          <p>Británico</p>
+          <p>Desarrollo de habilidades avanzadas de comunicación en inglés para entornos profesionales.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">2023 - Presente</div>
+          <h3>Cursos de Programación en Python</h3>
+          <p>Plataformas Online</p>
+          <p>Aprendizaje de fundamentos de programación, estructuras de datos y desarrollo de aplicaciones con Python.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
+  <section id="contact">
     <h2>Contacto</h2>
-    <p>📧 zafi@email.com</p>
-    <div class="social-links">
-      <a href="https://linkedin.com">LinkedIn</a>
-      <a href="https://github.com">GitHub</a>
-      <a href="https://instagram.com">Instagram</a>
+    <div class="contact-content">
+      <div class="contact-info">
+        <p><i class="fas fa-envelope"></i> zafi@email.com</p>
+        <p><i class="fas fa-phone"></i> +51 987 654 321</p>
+        <p><i class="fas fa-map-marker-alt"></i> Lima, Perú</p>
+        
+        <div class="social-links">
+          <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit">Enviar Mensaje</button>
+        </form>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 Zafi - Todos los derechos reservados</p>
+    <p>© 2025 Zafiro Diokiar Elly Ramirez Reque - Todos los derechos reservados</p>
   </footer>
+
+  <script>
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Simple form validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('¡Gracias por tu mensaje! Te responderé pronto.');
+      this.reset();
+    });
+    
+    // Animation on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 
 </body>
 </html>
