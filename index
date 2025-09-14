@@ -706,11 +706,6 @@
 </head>
 <body>
 
-  <div class="github-notice" id="githubNotice">
-    <span class="close" onclick="closeNotice()">&times;</span>
-    <strong><i class="fas fa-exclamation-triangle"></i> ¿Publicando en GitHub Pages?</strong> Asegúrate de que tu archivo se llame <strong>index.html</strong> y esté en la raíz del repositorio.
-  </div>
-
   <!-- Barra de navegación -->
   <nav class="navbar">
     <div class="nav-container">
@@ -757,7 +752,7 @@
     <h2>Sobre mí</h2>
     <div class="about-content">
       <div class="about-text">
-        <p>✨ Hola, soy Zafiro, tengo 19 años y actualmente estudio Computación Científica en la Universidad Nacional Mayor de San Marcos (UNMSM). Soy una persona creativa, proactiva, persistente y en constante aprendizaje, apasionada por la programación y el desarrollo web.</p>
+        <p>Hola, soy Zafiro, tengo 19 años y actualmente estudio Computación Científica en la Universidad Nacional Mayor de San Marcos (UNMSM). Soy una persona creativa, proactiva, persistente y en constante aprendizaje, apasionada por la programación y el desarrollo web.</p>
         
         <p>Trabajo en la edición de videos para redes sociales, colaborando con mi hermana en la gestión digital de doctores, cirujanos y dentistas. También soy parte de 21Estilos Producciones, donde no solo me encargo de la edición de reels de eventos, sino también de la gestión financiera de la empresa.</p>
         
