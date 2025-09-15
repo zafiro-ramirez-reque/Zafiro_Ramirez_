@@ -693,4 +693,37 @@ footer {
     .contact-content {
         flex-direction: column;
     }
+
+    /* Estilos para el botón de emoji */
+    .emoji-button {
+        text-decoration: none;
+        font-size: 2rem;
+        padding: 0.5rem 1rem;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        box-shadow: var(--shadow);
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .emoji-button:hover {
+        background: var(--secondary-color);
+        transform: scale(1.1);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .dark-mode .emoji-button {
+        background: var(--secondary-color);
+        color: white;
+    }
+    
+    .dark-mode .emoji-button:hover {
+        background: #6d8eff; /* Un color más claro para el hover en modo oscuro */
+        color: white;
+    }
 }
