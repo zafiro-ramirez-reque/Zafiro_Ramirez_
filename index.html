@@ -363,6 +363,7 @@
     
     .timeline-item:nth-child(odd) {
       left: 0;
+      text-align: right;
     }
     
     .timeline-item:nth-child(even) {
@@ -620,24 +621,24 @@
       border-color: #444;
     }
     
-    /* GitHub Notice */
-    .github-notice {
-      background: #ffc107;
-      color: #333;
-      padding: 15px;
-      text-align: center;
-      font-size: 16px;
-      position: relative;
-      border-left: 5px solid #ff9800;
+    /* Mensajes de formulario */
+    .form-message {
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 15px;
+      display: none;
     }
     
-    .github-notice .close {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 20px;
+    .form-message.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .form-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
     }
     
     /* Responsive */
@@ -687,6 +688,7 @@
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
+        text-align: left !important;
       }
       
       .timeline-item:nth-child(even) {
@@ -946,21 +948,22 @@
       </div>
       
       <div class="contact-form">
-        <form id="contactForm">
+        <form id="contactForm" action="https://formspree.io/f/mgvlbayn" method="POST">
           <div class="form-group">
             <label for="name">Nombre</label>
-            <input type="text" id="name" required>
+            <input type="text" id="name" name="name" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" required>
+            <input type="email" id="email" name="email" required>
           </div>
           <div class="form-group">
             <label for="message">Mensaje</label>
-            <textarea id="message" required></textarea>
+            <textarea id="message" name="message" required></textarea>
           </div>
           <button type="submit">Enviar Mensaje</button>
         </form>
+        <div id="formMessage" class="form-message"></div>
       </div>
     </div>
   </section>
@@ -1120,25 +1123,49 @@
     // Función para inicializar el formulario de contacto
     function initContactForm() {
       const contactForm = document.getElementById('contactForm');
+      const formMessage = document.getElementById('formMessage');
       
       if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
           e.preventDefault();
           
-          // Simular envío del formulario
           const submitBtn = this.querySelector('button[type="submit"]');
           const originalText = submitBtn.textContent;
           
           submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
           submitBtn.disabled = true;
           
-          // Simular retraso de red
-          setTimeout(() => {
-            alert('¡Gracias por tu mensaje! Te responderé pronto.');
-            contactForm.reset();
+          try {
+            const formData = new FormData(this);
+            const response = await fetch(this.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+            
+            if (response.ok) {
+              formMessage.textContent = '¡Gracias por tu mensaje! Te responderé pronto.';
+              formMessage.className = 'form-message success';
+              formMessage.style.display = 'block';
+              contactForm.reset();
+            } else {
+              throw new Error('Error en el envío del formulario');
+            }
+          } catch (error) {
+            formMessage.textContent = 'Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.';
+            formMessage.className = 'form-message error';
+            formMessage.style.display = 'block';
+          } finally {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
-          }, 2000);
+            
+            // Ocultar el mensaje después de 5 segundos
+            setTimeout(() => {
+              formMessage.style.display = 'none';
+            }, 5000);
+          }
         });
       }
     }
@@ -1160,11 +1187,6 @@
           clearInterval(typeInterval);
         }
       }, 100);
-    }
-
-    // Close GitHub notice
-    function closeNotice() {
-      document.getElementById('githubNotice').style.display = 'none';
     }
   </script>
 
