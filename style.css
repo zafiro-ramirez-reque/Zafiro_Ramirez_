@@ -694,24 +694,29 @@ footer {
         flex-direction: column;
     }
 
-   /* Estilos para el botón de emoji */
-.emoji-button {
-    text-decoration: none; /* Elimina el subrayado por defecto de los enlaces */
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-    border-radius: 50%; /* Le da una forma redonda */
-    background: var(--primary-color);
-    color: white;
-    display: inline-flex; /* Permite alinear el emoji */
-    align-items: center;
+/* Ajustes para el pie de página y el nuevo botón */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid #333;
+    color: #999;
+    display: flex;
     justify-content: center;
-    width: 60px; /* Tamaño del círculo */
-    height: 60px;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+    align-items: center;
+    gap: 1rem;
+}
+
+.emoji-button {
+    text-decoration: none;
+    color: #999;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .emoji-button:hover {
-    background: var(--secondary-color);
-    transform: translateY(-3px) scale(1.1);
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+.emoji-icon {
+    font-size: 1.5rem;
 }
